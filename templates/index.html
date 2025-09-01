@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Holiday Package Prediction</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="header-content">
+                <i class="fas fa-plane-departure header-icon"></i>
+                <h1>Holiday Package Predictor</h1>
+                <p>Predict whether a customer will purchase a holiday package</p>
+            </div>
+        </header>
+
+        <main class="main-content">
+            <form id="predictionForm" class="prediction-form">
+                <div class="form-grid">
+                    <!-- Personal Information -->
+                    <div class="form-section">
+                        <h3><i class="fas fa-user"></i> Personal Information</h3>
+                        
+                        <div class="form-group">
+                            <label for="Age">Age</label>
+                            <input type="number" id="Age" name="Age" min="18" max="100" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="Gender">Gender</label>
+                            <select id="Gender" name="Gender" required>
+                                <option value="">Select Gender</option>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="MaritalStatus">Marital Status</label>
+                            <select id="MaritalStatus" name="MaritalStatus" required>
+                                <option value="">Select Status</option>
+                                <option value="Unmarried">Unmarried</option>
+                                <option value="Married">Married</option>
+                                <option value="Divorced">Divorced</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="MonthlyIncome">Monthly Income ($)</label>
+                            <input type="number" id="MonthlyIncome" name="MonthlyIncome" min="0" step="100" required>
+                        </div>
+                    </div>
+
+                    <!-- Professional Information -->
+                    <div class="form-section">
+                        <h3><i class="fas fa-briefcase"></i> Professional Information</h3>
+                        
+                        <div class="form-group">
+                            <label for="Occupation">Occupation</label>
+                            <select id="Occupation" name="Occupation" required>
+                                <option value="">Select Occupation</option>
+                                <option value="Salaried">Salaried</option>
+                                <option value="Small Business">Small Business</option>
+                                <option value="Free Lancer">Free Lancer</option>
+                                <option value="Large Business">Large Business</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="Designation">Designation</label>
+                            <select id="Designation" name="Designation" required>
+                                <option value="">Select Designation</option>
+                                <option value="Executive">Executive</option>
+                                <option value="Manager">Manager</option>
+                                <option value="Senior Manager">Senior Manager</option>
+                                <option value="AVP">AVP</option>
+                                <option value="VP">VP</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Contact & Location -->
+                    <div class="form-section">
+                        <h3><i class="fas fa-map-marker-alt"></i> Contact & Location</h3>
+                        
+                        <div class="form-group">
+                            <label for="TypeofContact">Type of Contact</label>
+                            <select id="TypeofContact" name="TypeofContact" required>
+                                <option value="">Select Contact Type</option>
+                                <option value="Self Enquiry">Self Enquiry</option>
+                                <option value="Company Invited">Company Invited</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="CityTier">City Tier</label>
+                            <select id="CityTier" name="CityTier" required>
+                                <option value="">Select City Tier</option>
+                                <option value="1">Tier 1</option>
+                                <option value="2">Tier 2</option>
+                                <option value="3">Tier 3</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Travel Information -->
+                    <div class="form-section">
+                        <h3><i class="fas fa-suitcase-rolling"></i> Travel Information</h3>
+                        
+                        <div class="form-group">
+                            <label for="ProductPitched">Product Pitched</label>
+                            <select id="ProductPitched" name="ProductPitched" required>
+                                <option value="">Select Product</option>
+                                <option value="Basic">Basic</option>
+                                <option value="Standard">Standard</option>
+                                <option value="Deluxe">Deluxe</option>
+                                <option value="Super Deluxe">Super Deluxe</option>
+                                <option value="King">King</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="PreferredPropertyStar">Preferred Property Star Rating</label>
+                            <select id="PreferredPropertyStar" name="PreferredPropertyStar" required>
+                                <option value="">Select Rating</option>
+                                <option value="3">3 Star</option>
+                                <option value="4">4 Star</option>
+                                <option value="5">5 Star</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="NumberOfTrips">Number of Previous Trips</label>
+                            <input type="number" id="NumberOfTrips" name="NumberOfTrips" min="0" max="50" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="Passport">Has Passport?</label>
+                            <select id="Passport" name="Passport" required>
+                                <option value="">Select</option>
+                                <option value="1">Yes</option>
+                                <option value="0">No</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="OwnCar">Owns Car?</label>
+                            <select id="OwnCar" name="OwnCar" required>
+                                <option value="">Select</option>
+                                <option value="1">Yes</option>
+                                <option value="0">No</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Interaction Details -->
+                    <div class="form-section">
+                        <h3><i class="fas fa-comments"></i> Interaction Details</h3>
+                        
+                        <div class="form-group">
+                            <label for="DurationOfPitch">Duration of Pitch (minutes)</label>
+                            <input type="number" id="DurationOfPitch" name="DurationOfPitch" min="1" max="200" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="NumberOfFollowups">Number of Follow-ups</label>
+                            <input type="number" id="NumberOfFollowups" name="NumberOfFollowups" min="0" max="10" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="PitchSatisfactionScore">Pitch Satisfaction Score (1-5)</label>
+                            <input type="number" id="PitchSatisfactionScore" name="PitchSatisfactionScore" min="1" max="5" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="NumberOfPersonVisiting">Number of Persons Visiting</label>
+                            <input type="number" id="NumberOfPersonVisiting" name="NumberOfPersonVisiting" min="1" max="10" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="NumberOfChildrenVisiting">Number of Children Visiting</label>
+                            <input type="number" id="NumberOfChildrenVisiting" name="NumberOfChildrenVisiting" min="0" max="10" required>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="submit-section">
+                    <button type="submit" class="predict-btn" id="predictBtn">
+                        <i class="fas fa-magic"></i>
+                        Predict Holiday Package Purchase
+                    </button>
+                </div>
+            </form>
+
+            <!-- Results Section -->
+            <div id="resultsSection" class="results-section hidden">
+                <div class="result-card">
+                    <div id="predictionResult" class="prediction-result"></div>
+                    <div id="confidenceScore" class="confidence-score"></div>
+                    <div id="probabilityBreakdown" class="probability-breakdown"></div>
+                </div>
+            </div>
+
+            <!-- Loading Spinner -->
+            <div id="loadingSpinner" class="loading-spinner hidden">
+                <div class="spinner"></div>
+                <p>Analyzing customer data...</p>
+            </div>
+        </main>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
