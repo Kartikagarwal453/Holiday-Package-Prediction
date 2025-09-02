@@ -2,16 +2,16 @@ from flask import Flask, request, jsonify, render_template
 import pickle
 import pandas as pd
 import numpy as np
-from flask_cors import CORS
+from sklearn.preprocessing import StandardScaler
+import os
 
-app = Flask(__name__)
-CORS(app)
+application = Flask(__name__)
+app = application
 
 # Load the trained model and preprocessor
 try:
     model = pickle.load(open('models/model.pkl', 'rb'))
     preprocessor = pickle.load(open('models/preprocessor.pkl', 'rb'))
-    print("Model and preprocessor loaded successfully!")
 except Exception as e:
     print(f"Error loading model: {e}")
     model = None
@@ -80,4 +80,5 @@ def health():
     return jsonify({'status': 'healthy', 'model_loaded': model is not None})
 
 if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0', port=5000)
+    port = int(os.environ.get("PORT",5000))
+    app.run(debug=True, host='0.0.0.0', port=port)
